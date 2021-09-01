@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mayisheng.wanandroid.module.main.MainViewModel" />
+
+        <variable
+            name="fragmentActivity"
+            type="androidx.fragment.app.FragmentActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            currentItem="@{viewModel.currentItem}"
+            fragmentActivity="@{fragmentActivity}"
+            fragments="@{viewModel.fragments}"
+            pageChangeCallback="@{viewModel.onPageChangeCallback}"
+            userInputEnable="@{false}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            itemSelected="@{viewModel.currentItem}"
+            selectedListener="@{viewModel.onItemSelectedListener}"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/main_bottom_navigation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
