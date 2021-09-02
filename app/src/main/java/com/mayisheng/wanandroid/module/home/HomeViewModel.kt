@@ -1,7 +1,17 @@
 package com.mayisheng.wanandroid.module.home
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import com.mayisheng.wanandroid.base.BaseViewModel
+import com.mayisheng.wanandroid.bean.BannerBean
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel : BaseViewModel() {
+    private val mHomeRepository: HomeRepository by lazy { HomeRepository() }
+    val banner: MutableLiveData<List<BannerBean>> = MutableLiveData<List<BannerBean>>()
+
+    fun getBanner() {
+        launch {
+            banner.value = mHomeRepository.getBanner()
+        }
+    }
 
 }

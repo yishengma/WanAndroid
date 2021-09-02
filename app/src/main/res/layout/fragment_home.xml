@@ -4,6 +4,15 @@
 
     <data>
 
+        <import type="android.widget.ImageView"/>
+        <variable
+            name="adapter"
+            type="cn.bingoogolapple.bgabanner.BGABanner.Adapter&lt;ImageView,String&gt;" />
+
+        <variable
+            name="delegate"
+            type="cn.bingoogolapple.bgabanner.BGABanner.Delegate&lt;ImageView,String&gt;" />
+
         <variable
             name="VM"
             type="com.mayisheng.wanandroid.module.home.HomeViewModel" />
@@ -31,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clSearch"
+                android:id="@+id/home_search_layout"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_marginLeft="70dp"
@@ -52,7 +61,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/etSearch"
+                    android:id="@+id/tv_search_text"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_marginLeft="42dp"
@@ -69,7 +78,7 @@
 
 
             <ImageView
-                android:id="@+id/ivAdd"
+                android:id="@+id/imv_home_add"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginRight="10dp"
@@ -80,6 +89,51 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="54dp">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <cn.bingoogolapple.bgabanner.BGABanner
+                        android:id="@+id/banner"
+                        adapter="@{adapter}"
+                        autoPlayAble="@{true}"
+                        data="@{VM.banner}"
+                        delegate="@{delegate}"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:banner_indicatorGravity="left"
+                        app:banner_pageChangeDuration="1000"
+                        app:banner_pointAutoPlayAble="true"
+                        app:banner_pointAutoPlayInterval="3000"
+                        app:banner_pointContainerBackground="@color/transparent"
+                        app:banner_pointContainerLeftRightPadding="16dp"
+                        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+                        app:banner_pointTopBottomMargin="40dp"
+                        app:layout_scrollFlags="scroll" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 
     </FrameLayout>
 </layout>
