@@ -11,6 +11,8 @@ class MainActivity : BaseActivity() {
     @Override
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStatusColor()
+        setSystemInvadeBlack()
     }
 
     override fun initViewModel() {
