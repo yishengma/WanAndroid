@@ -5,28 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.lifecycle.Observer
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.mayisheng.wanandroid.BR
 import com.mayisheng.wanandroid.R
 import com.mayisheng.wanandroid.base.BaseFragment
 import com.mayisheng.wanandroid.base.DataBindingConfig
+import com.mayisheng.wanandroid.bean.BannerBean
 import com.mayisheng.wanandroid.common.loadImage
 
 class HomeFragment : BaseFragment() {
     private lateinit var mState: HomeViewModel
-    private val mBannerAdapter: BGABanner.Adapter<ImageView?, String> by lazy {
-        BGABanner.Adapter<ImageView?, String> { banner, itemView, model, position ->
+    private val mBannerAdapter: BGABanner.Adapter<ImageView?, BannerBean> by lazy {
+        BGABanner.Adapter<ImageView?, BannerBean> { banner, itemView, model, position ->
             itemView?.apply {
                 scaleType = ImageView.ScaleType.CENTER_CROP
-                loadImage(mActivity, model)
+                loadImage(mActivity, model?.imagePath)
             }
         }
     }
 
-    private val mBannerDelegate: BGABanner.Delegate<ImageView?, String> by lazy {
+    private val mBannerDelegate: BGABanner.Delegate<ImageView?, BannerBean> by lazy {
         BGABanner.Delegate { banner, itemView, model, position ->
-
+            nav().navigate(R.id.web_fragment, Bundle().apply {
+                putString("loadUrl", model?.url)
+                putString("title", model?.title)
+                putInt("id", position)
+            })
         }
     }
 
@@ -44,14 +48,9 @@ class HomeFragment : BaseFragment() {
             .addBindingParam(BR.listAdapter, mAdapter)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mState.getBanner()
         mState.getArticles()
-        return super.onCreateView(inflater, container, savedInstanceState)
-
     }
 }

@@ -9,14 +9,15 @@
         <import type="androidx.recyclerview.widget.RecyclerView.ViewHolder" />
 
         <import type="com.mayisheng.wanandroid.bean.ArticleBean" />
+        <import type="com.mayisheng.wanandroid.bean.BannerBean"/>
 
         <variable
             name="adapter"
-            type="cn.bingoogolapple.bgabanner.BGABanner.Adapter&lt;ImageView,String&gt;" />
+            type="cn.bingoogolapple.bgabanner.BGABanner.Adapter&lt;ImageView,BannerBean&gt;" />
 
         <variable
             name="delegate"
-            type="cn.bingoogolapple.bgabanner.BGABanner.Delegate&lt;ImageView,String&gt;" />
+            type="cn.bingoogolapple.bgabanner.BGABanner.Delegate&lt;ImageView,BannerBean&gt;" />
 
         <variable
             name="VM"

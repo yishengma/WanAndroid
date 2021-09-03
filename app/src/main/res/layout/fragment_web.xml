@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.webkit.WebViewClient" />
+
+        <import type="android.webkit.WebChromeClient" />
+
+        <variable
+            name="vm"
+            type="com.mayisheng.wanandroid.module.web.WebViewModel" />
+
+        <variable
+            name="viewClient"
+            type="WebViewClient" />
+
+        <variable
+            name="chromeClient"
+            type="WebChromeClient" />
+
+        <variable
+            name="backClickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="?attr/main_bg_1"
+            android:elevation="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/imv_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ripple_circle_bg"
+                android:padding="15dp"
+                android:onClick="@{backClickListener}"
+                android:src="@drawable/svg_back" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="40dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{vm.title}"
+                android:textColor="?attr/theme_color_1"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="55dp"
+            android:max="@{vm.maxProgress}"
+            android:progress="@{vm.progress}"
+            android:progressDrawable="@drawable/progress_red"
+            android:visibility="@{vm.isVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <WebView
+            android:id="@+id/web_view"
+            loadWebUrl="@{vm.url}"
+            webChromeClient="@{chromeClient}"
+            webViewClient="@{viewClient}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="57dp"
+            android:overScrollMode="never" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

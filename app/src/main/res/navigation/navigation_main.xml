@@ -11,5 +11,21 @@
         android:name="com.mayisheng.wanandroid.module.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/web_fragment"
+            app:destination="@id/web_fragment">
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@id/web_fragment"
+        android:name="com.mayisheng.wanandroid.module.web.WebFragment"
+        android:label="WebFragment"
+        tools:layout="@layout/fragment_web"
+
+        >
+
     </fragment>
 </navigation>
