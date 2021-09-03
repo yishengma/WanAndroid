@@ -4,7 +4,12 @@
 
     <data>
 
-        <import type="android.widget.ImageView"/>
+        <import type="android.widget.ImageView" />
+
+        <import type="androidx.recyclerview.widget.RecyclerView.ViewHolder" />
+
+        <import type="com.mayisheng.wanandroid.bean.ArticleBean" />
+
         <variable
             name="adapter"
             type="cn.bingoogolapple.bgabanner.BGABanner.Adapter&lt;ImageView,String&gt;" />
@@ -16,6 +21,10 @@
         <variable
             name="VM"
             type="com.mayisheng.wanandroid.module.home.HomeViewModel" />
+
+        <variable
+            name="listAdapter"
+            type="com.mayisheng.wanandroid.module.home.ArticleAdapter" />
     </data>
 
     <FrameLayout
@@ -125,6 +134,8 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
+                    listAdapter="@{listAdapter}"
+                    submitList="@{VM.articles}"
                     android:id="@+id/home_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

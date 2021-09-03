@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/layout/fragment_project.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/fragment_square.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/fragment_wxaccount.xml" value="0.24427083333333333" />
+        <entry key="app/src/main/res/layout/item_home_article.xml" value="0.2994791666666667" />
+        <entry key="app/src/main/res/layout/item_project.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/menu/main_bottom_navigation.xml" value="0.1" />
       </map>
     </option>
